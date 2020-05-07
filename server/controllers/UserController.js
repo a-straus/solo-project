@@ -7,7 +7,7 @@ const SALT_ROUNDS = 10;
 userController.checkDuplicates = async (req, res, next) => {
   const query = {
     text: `SELECT * FROM users WHERE username=$1`,
-    values: [req.body.username],
+    values: [req.body.username.toLowerCase()],
   };
   try {
     const result = await db.query(query);
@@ -65,7 +65,7 @@ userController.findUser = async (req, res, next) => {
   const { username } = req.body;
   const query = {
     text: `SELECT id, username, password FROM users where username = $1`,
-    values: [username],
+    values: [username.toLowerCase()],
   };
   try {
     const queryResult = await db.query(query);
@@ -94,7 +94,7 @@ userController.createUser = async (req, res, next) => {
   const { hashedPassword } = res.locals;
   try {
     const query = `INSERT INTO users(username, password) VALUES($1, $2) returning *`;
-    const values = [username, hashedPassword];
+    const values = [username.toLowerCase(), hashedPassword];
     const queryResult = await db.query(query, values);
     const user = {
       username: queryResult.rows[0].username,
