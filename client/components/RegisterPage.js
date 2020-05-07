@@ -2,37 +2,28 @@ import React from 'react';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default function LoginPage({ setUserName, history }) {
+export default function RegisterPage({ setUserName, history }) {
   const [redirect, setRedirect] = useState(false);
-  const [incorrectPw, setIncorrectPw] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    const response = await fetch('/api/user/login', {
+    const response = await fetch('/api/user/register', {
       method: 'POST',
       body: data,
     });
-    if (response.status === 404) {
+    if (response.status === 409) {
       setRedirect(true);
-    }
-    if (response.status === 403) {
-      setIncorrectPw(true);
     } else {
       const resultData = await response.json();
       setUserName(resultData.username);
       history.push('/');
     }
   };
-  const IncorrectPassword = () => (
-    <div>
-      <p>Incorrect Password!</p>
-    </div>
-  );
-  if (redirect) return <Redirect to="/register" />;
+  if (redirect) return <Redirect to="/login" />;
+
   return (
     <div>
-      {incorrectPw ? <IncorrectPassword /> : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter username</label>
         <input id="username" name="username" type="text" />
@@ -40,7 +31,7 @@ export default function LoginPage({ setUserName, history }) {
         <label htmlFor="password">Enter password</label>
         <input id="password" name="password" type="password" />
         <br />
-        <button>Login</button>
+        <button>Register</button>
       </form>
     </div>
   );

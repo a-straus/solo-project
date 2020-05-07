@@ -4,8 +4,8 @@ const SessionController = {};
 
 SessionController.signToken = (req, res, next) => {
   try {
-    const { id, username } = res.locals;
-    res.locals.token = jwt.sign({ user_id: id, username }, TOKEN_SECRET, { expiresIn: '1800s' });
+    const { id, username } = res.locals.user;
+    res.locals.token = jwt.sign({ id, username }, TOKEN_SECRET, { expiresIn: '1800s' });
     next();
   } catch (err) {
     next({

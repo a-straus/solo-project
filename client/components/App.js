@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import HomePage from './HomePage';
-import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 import Nav from './Nav';
 import Auth from '../auth/Authorizer';
 import Cookies from 'js-cookie';
 import CreateBuilding from './CreateBuilding';
 import CreateDoorman from './CreateDoorman';
+import LoginPage from './LoginPage';
 
 export default function App() {
   const [userName, setUserName] = useState(
@@ -22,6 +23,11 @@ export default function App() {
         <Nav userName={userName} setUserName={setUserName} />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/register"
+            render={(props) => <RegisterPage {...props} setUserName={setUserName} />}
+          />
           <Route
             exact
             path="/login"

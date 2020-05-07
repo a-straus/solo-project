@@ -14,8 +14,18 @@ router.post(
   UserController.createUser,
   SessionController.signToken,
   CookieController.setSessionCookie,
-  (req, res, next) => {
-    res.json(res.locals.username);
+  (req, res) => {
+    res.json(res.locals.user);
+  }
+);
+router.post(
+  '/login',
+  UserController.findUser,
+  UserController.decryptPassword,
+  SessionController.signToken,
+  CookieController.setSessionCookie,
+  (req, res) => {
+    res.status(200).json(res.locals.user);
   }
 );
 

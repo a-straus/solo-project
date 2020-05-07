@@ -19,7 +19,7 @@ class Auth {
       const token = Cookies.get('token');
       if (token) {
         try {
-          JSON.parse(atob(token.split('.')[1])).user_id
+          JSON.parse(atob(token.split('.')[1])).id
             ? (this.authenticated = true)
             : (this.authenticated = false);
           return this.authenticated;

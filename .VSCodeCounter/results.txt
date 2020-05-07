@@ -1,13 +1,13 @@
-Date : 2020-05-07 00:23:53
+Date : 2020-05-07 10:50:34
 Directory : /Users/straushouse/Documents/Codesmith/solo-project
-Total : 29 files,  12164 codes, 7 comments, 79 blanks, all 12250 lines
+Total : 29 files,  12278 codes, 7 comments, 86 blanks, all 12371 lines
 
 Languages
 +------------+------------+------------+------------+------------+------------+
 | language   | files      | code       | comment    | blank      | total      |
 +------------+------------+------------+------------+------------+------------+
 | JSON       |          2 |     11,524 |          0 |          2 |     11,526 |
-| JavaScript |         26 |        627 |          7 |         76 |        710 |
+| JavaScript |         26 |        741 |          7 |         83 |        831 |
 | HTML       |          1 |         13 |          0 |          1 |         14 |
 +------------+------------+------------+------------+------------+------------+
 
@@ -15,13 +15,13 @@ Directories
 +----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                                         | files      | code       | comment    | blank      | total      |
 +----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                            |         29 |     12,164 |          7 |         79 |     12,250 |
-| client                                                                                       |         11 |        298 |          0 |         25 |        323 |
+| .                                                                                            |         29 |     12,278 |          7 |         86 |     12,371 |
+| client                                                                                       |         11 |        351 |          0 |         31 |        382 |
 | client/auth                                                                                  |          1 |         34 |          0 |          3 |         37 |
-| client/components                                                                            |          9 |        260 |          0 |         20 |        280 |
-| server                                                                                       |         12 |        250 |          2 |         47 |        299 |
-| server/controllers                                                                           |          5 |        147 |          0 |         19 |        166 |
-| server/routes                                                                                |          4 |         58 |          0 |         15 |         73 |
+| client/components                                                                            |          9 |        313 |          0 |         26 |        339 |
+| server                                                                                       |         12 |        311 |          2 |         48 |        361 |
+| server/controllers                                                                           |          5 |        195 |          0 |         20 |        215 |
+| server/routes                                                                                |          4 |         71 |          0 |         15 |         86 |
 | server/secret                                                                                |          1 |          1 |          0 |          1 |          2 |
 +----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
@@ -32,31 +32,31 @@ Files
 | /Users/straushouse/Documents/Codesmith/solo-project/.eslintrc.js                             | JavaScript |         30 |          0 |          1 |         31 |
 | /Users/straushouse/Documents/Codesmith/solo-project/.prettierrc.js                           | JavaScript |          5 |          0 |          1 |          6 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/auth/Authorizer.js                | JavaScript |         34 |          0 |          3 |         37 |
-| /Users/straushouse/Documents/Codesmith/solo-project/client/components/App.js                 | JavaScript |         56 |          0 |          3 |         59 |
+| /Users/straushouse/Documents/Codesmith/solo-project/client/components/App.js                 | JavaScript |         36 |          0 |          3 |         39 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/components/Building.js            | JavaScript |         12 |          0 |          2 |         14 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/components/CreateBuilding.js      | JavaScript |         51 |          0 |          2 |         53 |
-| /Users/straushouse/Documents/Codesmith/solo-project/client/components/CreateDoorman.js       | JavaScript |         42 |          0 |          3 |         45 |
+| /Users/straushouse/Documents/Codesmith/solo-project/client/components/CreateDoorman.js       | JavaScript |         77 |          0 |          6 |         83 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/components/Doorman.js             | JavaScript |         27 |          0 |          2 |         29 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/components/HomePage.js            | JavaScript |          8 |          0 |          2 |         10 |
-| /Users/straushouse/Documents/Codesmith/solo-project/client/components/LoginPage.js           | JavaScript |         29 |          0 |          2 |         31 |
-| /Users/straushouse/Documents/Codesmith/solo-project/client/components/Nav.js                 | JavaScript |         13 |          0 |          2 |         15 |
+| /Users/straushouse/Documents/Codesmith/solo-project/client/components/LoginPage.js           | JavaScript |         41 |          0 |          5 |         46 |
+| /Users/straushouse/Documents/Codesmith/solo-project/client/components/Nav.js                 | JavaScript |         39 |          0 |          2 |         41 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/components/PrivateRoute.js        | JavaScript |         22 |          0 |          2 |         24 |
 | /Users/straushouse/Documents/Codesmith/solo-project/client/index.js                          | JavaScript |          4 |          0 |          2 |          6 |
 | /Users/straushouse/Documents/Codesmith/solo-project/index.html                               | HTML       |         13 |          0 |          1 |         14 |
 | /Users/straushouse/Documents/Codesmith/solo-project/package-lock.json                        | JSON       |     11,450 |          0 |          1 |     11,451 |
 | /Users/straushouse/Documents/Codesmith/solo-project/package.json                             | JSON       |         74 |          0 |          1 |         75 |
-| /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/BuildingController.js | JavaScript |         45 |          0 |          4 |         49 |
+| /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/BuildingController.js | JavaScript |         60 |          0 |          4 |         64 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/CookieController.js   | JavaScript |         15 |          0 |          3 |         18 |
-| /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/DoormanController.js  | JavaScript |         11 |          0 |          3 |         14 |
+| /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/DoormanController.js  | JavaScript |         44 |          0 |          4 |         48 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/SessionController.js  | JavaScript |         17 |          0 |          3 |         20 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/controllers/UserController.js     | JavaScript |         59 |          0 |          6 |         65 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/models.js                         | JavaScript |         12 |          0 |          4 |         16 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/routes/api.js                     | JavaScript |         14 |          0 |          6 |         20 |
-| /Users/straushouse/Documents/Codesmith/solo-project/server/routes/building.js                | JavaScript |         12 |          0 |          3 |         15 |
+| /Users/straushouse/Documents/Codesmith/solo-project/server/routes/building.js                | JavaScript |         15 |          0 |          3 |         18 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/routes/doorman.js                 | JavaScript |         12 |          0 |          3 |         15 |
-| /Users/straushouse/Documents/Codesmith/solo-project/server/routes/user.js                    | JavaScript |         20 |          0 |          3 |         23 |
+| /Users/straushouse/Documents/Codesmith/solo-project/server/routes/user.js                    | JavaScript |         30 |          0 |          3 |         33 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/secret/tokenSecret.js             | JavaScript |          1 |          0 |          1 |          2 |
 | /Users/straushouse/Documents/Codesmith/solo-project/server/server.js                         | JavaScript |         32 |          2 |          8 |         42 |
 | /Users/straushouse/Documents/Codesmith/solo-project/webpack.config.js                        | JavaScript |         44 |          5 |          2 |         51 |
-| Total                                                                                        |            |     12,164 |          7 |         79 |     12,250 |
+| Total                                                                                        |            |     12,278 |          7 |         86 |     12,371 |
 +----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

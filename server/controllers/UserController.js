@@ -41,6 +41,54 @@ userController.hashPassword = async (req, res, next) => {
   }
 };
 
+userController.decryptPassword = async (req, res, next) => {
+  const { hashedPassword } = res.locals.user;
+  const { password } = req.body;
+  try {
+    const match = await bcrypt.compare(password, hashedPassword);
+    console.log('match: ', match);
+    if (match) {
+      next();
+    } else {
+      res.status(403).send();
+    }
+  } catch (err) {
+    next({
+      log: `Error in userController.decryptPassword: ${err}`,
+      status: 500,
+      message: 'Could not decrypt password',
+    });
+  }
+};
+
+userController.findUser = async (req, res, next) => {
+  const { username } = req.body;
+  const query = {
+    text: `SELECT id, username, password FROM users where username = $1`,
+    values: [username],
+  };
+  try {
+    const queryResult = await db.query(query);
+    if (!queryResult.rows[0]) {
+      res.status(404).send();
+    } else {
+      const user = {
+        username: queryResult.rows[0].username,
+        hashedPassword: queryResult.rows[0].password,
+        id: queryResult.rows[0].id,
+      };
+      res.locals.user = user;
+      next();
+    }
+  } catch (err) {
+    next({
+      log: `Error in userController.findUser: ${err}`,
+      status: 500,
+      message: 'Couldnt Find User',
+    });
+  }
+};
+
 userController.createUser = async (req, res, next) => {
   const { username } = req.body;
   const { hashedPassword } = res.locals;
@@ -48,9 +96,11 @@ userController.createUser = async (req, res, next) => {
     const query = `INSERT INTO users(username, password) VALUES($1, $2) returning *`;
     const values = [username, hashedPassword];
     const queryResult = await db.query(query, values);
-    const { id } = queryResult.rows[0];
-    res.locals.id = id;
-    res.locals.username = username;
+    const user = {
+      username: queryResult.rows[0].username,
+      id: queryResult.rows[0].id,
+    };
+    res.locals.user = user;
     next();
   } catch (err) {
     next({

@@ -18,9 +18,13 @@ export default function Nav({ userName, setUserName }) {
         </li>
         <li>
           {Auth.isAuthenticated() ? (
-            <Link to="/:user_id">{userName}</Link>
+            <span>
+              <Link to="/:user_id">{userName}</Link>
+            </span>
           ) : (
-            <Link to="/login">Login</Link>
+            <div>
+              <Link to="/register">Register</Link>, <Link to="/login">Login</Link>
+            </div>
           )}
         </li>
         {Auth.isAuthenticated() ? (
