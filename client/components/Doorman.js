@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function Doorman({
   id,
-  name,
+  firstname,
+  lastname,
   super: superIntendent,
   night,
   rating,
@@ -13,13 +14,14 @@ export default function Doorman({
   charisma,
 }) {
   return (
-    <div>
+    <div className="doorman-view">
       {superIntendent ? <h4>Super? YES</h4> : null}
-      <p className={}>Name: {name}</p>
+      <p>First Name: {firstname}</p>
+      <p>Last Name: {lastname}</p>
       <p>Night Man? {night ? 'Yes' : 'No'}</p>
       <p>Rating: {rating}</p>
       <p>Speciality: {speciality}</p>
-      <p>Strenght: {strength}</p>
+      <p>Strength: {strength}</p>
       <p>Endurance: {endurance}</p>
       <p>Cunning: {cunning}</p>
       <p>Charisma: {charisma}</p>

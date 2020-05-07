@@ -6,6 +6,8 @@ router.post(
   '/create',
   DoormanController.checkDuplicates,
   DoormanController.createDoorman,
+  DoormanController.createBuildings_doormen,
+  DoormanController.createUsers_doormen,
   (req, res, next) => {
     res.status(200).send();
   }

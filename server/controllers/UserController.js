@@ -111,4 +111,44 @@ userController.createUser = async (req, res, next) => {
   }
 };
 
+userController.getUserBuildings = async (req, res, next) => {
+  const { user_id } = req.query;
+  try {
+    const query = {
+      text: `SELECT buildings.* from users_buildings LEFT JOIN buildings on users_buildings.building_id = buildings.id WHERE users_buildings.user_id = $1`,
+      values: [user_id],
+    };
+    const queryResult = await db.query(query);
+    console.log('getUserBuilding buildings: ', queryResult.rows);
+    res.locals.buildings = queryResult.rows;
+    next();
+  } catch (err) {
+    next({
+      log: `Error in userController.getUserBuildings: ${err}`,
+      status: 500,
+      message: 'Couldnt find users buildings',
+    });
+  }
+};
+
+userController.getUserDoormen = async (req, res, next) => {
+  const { user_id } = req.query;
+  try {
+    const query = {
+      text: `SELECT doormen.* from users_doormen LEFT JOIN doormen on users_doormen.doorman_id = doormen.id WHERE users_doormen.user_id = $1`,
+      values: [user_id],
+    };
+    const queryResult = await db.query(query);
+    console.log('getUserDoormen doormen: ', queryResult.rows);
+    res.locals.doormen = queryResult.rows;
+    next();
+  } catch (err) {
+    next({
+      log: `Error in userController.getUserDoormen: ${err}`,
+      status: 500,
+      message: 'Couldnt find users doormen',
+    });
+  }
+};
+
 module.exports = userController;

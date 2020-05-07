@@ -28,5 +28,11 @@ router.post(
     res.status(200).json(res.locals.user);
   }
 );
+router.get('/buildings', UserController.getUserBuildings, (req, res) => {
+  res.status(200).json(res.locals.buildings);
+});
 
+router.get('/doormen', UserController.getUserDoormen, (req, res) => {
+  res.status(200).json(res.locals.doormen);
+});
 module.exports = router;

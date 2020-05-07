@@ -1,17 +1,11 @@
 import React from 'react';
 import Auth from '../auth/Authorizer';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  withRouter,
-  useRouteMatch,
-} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Nav({ userName, setUserName }) {
+  const history = useHistory();
   return (
-    <div>
+    <div id="nav">
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -19,7 +13,7 @@ export default function Nav({ userName, setUserName }) {
         <li>
           {Auth.isAuthenticated() ? (
             <span>
-              <Link to="/:user_id">{userName}</Link>
+              <Link to="/user">{userName}</Link>
             </span>
           ) : (
             <div>
@@ -31,7 +25,8 @@ export default function Nav({ userName, setUserName }) {
           <li>
             <button
               onClick={() => {
-                Auth.logout(setUserName);
+                Auth.logout(() => {});
+                history.push('/');
               }}
             >
               Log Out

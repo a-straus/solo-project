@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function CreateBuilding() {
+export default function CreateBuilding({ userId }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    data.append('user_id', userId);
     const response = await fetch('/api/building/create', {
       method: 'POST',
       body: data,
@@ -12,7 +13,7 @@ export default function CreateBuilding() {
     event.target.reset();
   };
   return (
-    <span>
+    <span className="building-creator">
       <h4>Create a Building:</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="address">Address:</label>

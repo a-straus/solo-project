@@ -25,7 +25,7 @@ doormanController.checkDuplicates = async (req, res, next) => {
 };
 
 doormanController.createDoorman = async (req, res, next) => {
-  console.log('req.boduy inside createDoorman: ', req.body);
+  console.log('req.body inside createDoorman: ', req.body);
   const { firstname, lastname, super: superIntendent, night, specialty } = req.body;
   try {
     const query = {
@@ -34,6 +34,7 @@ doormanController.createDoorman = async (req, res, next) => {
       values: [firstname, lastname, superIntendent, night, specialty],
     };
     const queryResult = await db.query(query);
+    res.locals.doorman_id = queryResult.rows[0].id;
     next();
   } catch (err) {
     next({
@@ -44,4 +45,45 @@ doormanController.createDoorman = async (req, res, next) => {
   }
 };
 
+doormanController.createBuildings_doormen = async (req, res, next) => {
+  const { buildings } = req.body;
+  console.log('buildings inside createBuildings_doormen: ', buildings);
+  const { doorman_id } = res.locals;
+  try {
+    for (let i = 0; i < buildings.length; i++) {
+      const query = {
+        text: `INSERT INTO buildings_doormen (building_id, doorman_id)
+      VALUES($1, $2)`,
+        values: [buildings[i], doorman_id],
+      };
+      await db.query(query);
+    }
+    next();
+  } catch (err) {
+    next({
+      log: `Error in doormanController.createBuildings_doormen: ${err}`,
+      status: 500,
+      message: 'Couldnt create doorman',
+    });
+  }
+};
+
+doormanController.createUsers_doormen = async (req, res, next) => {
+  const { user_id } = req.body;
+  const { doorman_id } = res.locals;
+  try {
+    const query = {
+      text: `INSERT INTO users_doormen (user_id, doorman_id) VALUES ($1, $2)`,
+      values: [user_id, doorman_id],
+    };
+    await db.query(query);
+    next();
+  } catch (err) {
+    next({
+      log: `Error in doormanController.createUsers_doormen: ${err}`,
+      status: 500,
+      message: 'Couldnt create doorman',
+    });
+  }
+};
 module.exports = doormanController;

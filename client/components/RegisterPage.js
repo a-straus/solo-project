@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default function RegisterPage({ setUserName, history }) {
+export default function RegisterPage({ setUserName, history, setUserId }) {
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -17,7 +17,8 @@ export default function RegisterPage({ setUserName, history }) {
     } else {
       const resultData = await response.json();
       setUserName(resultData.username);
-      history.push('/');
+      setUserId(resultData.id);
+      history.push('/user');
     }
   };
   if (redirect) return <Redirect to="/login" />;

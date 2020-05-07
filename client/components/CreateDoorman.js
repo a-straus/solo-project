@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 
-export default function CreateDoorman() {
+export default function CreateDoorman({ userId }) {
+  function reducer(buildings, action) {
+    console.log('buildings: ', buildings);
+    console.log('action payload: ', action.payload);
+    switch (action.type) {
+      case 'add_building':
+        const newBuildings = [...buildings].concat(action.payload);
+        console.log('new buildings: ', newBuildings);
+        return newBuildings;
+      default:
+        return buildings;
+    }
+  }
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [buildings, setBuildings] = useState([]);
+  const [state, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,11 +34,13 @@ export default function CreateDoorman() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    data.append('buildings', [...state.map((building) => building.id)]);
+    data.append('user_id', userId);
     const response = await fetch('/api/doorman/create', {
       method: 'POST',
       body: data,
     });
-    const resultData = await response.json();
+    //const resultData = await response.json();
     event.target.reset();
   };
 
@@ -34,8 +48,10 @@ export default function CreateDoorman() {
     setSearchTerm(event.target.value);
   };
 
+  const addBuilding = (id) => {};
+
   return (
-    <span>
+    <span className="doorman-creator">
       <h4>Create a Doorman:</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstname">First Name:</label>
@@ -70,11 +86,25 @@ export default function CreateDoorman() {
           onChange={handleSearchChange}
         />
         <br />
-        {searchResults.length
-          ? searchResults.map((building) => {
-              return <p>{building.address}</p>;
-            })
-          : null}
+        <div>
+          {state.map((building) => {
+            {
+              console.log('building from state: ', building);
+            }
+            return <h6>{building.address}</h6>;
+          })}
+        </div>
+        {searchResults.length ? (
+          <div id="building-search">
+            {searchResults.map((building) => {
+              return (
+                <p onClick={() => dispatch({ type: 'add_building', payload: building })}>
+                  {building.address}
+                </p>
+              );
+            })}
+          </div>
+        ) : null}
         <button>Submit</button>
       </form>
     </span>
