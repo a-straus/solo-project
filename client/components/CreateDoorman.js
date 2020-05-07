@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 export default function CreateDoorman() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [buildings, setBuildings] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [buildings, setBuildings] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -19,41 +19,19 @@ export default function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            {Auth.isAuthenticated() ? (
-              <Link to="/:user_id">{userName}</Link>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </li>
-          {Auth.isAuthenticated() ? (
-            <li>
-              <button
-                onClick={() => {
-                  Auth.logout(setUserName);
-                }}
-              >
-                Log Out
-              </button>
-            </li>
-          ) : null}
-        </ul>
-      </div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route
-          exact
-          path="/login"
-          render={(props) => <LoginPage {...props} setUserName={setUserName} />}
-        />
-      </Switch>
-      <div>
-        <CreateBuilding />
-        <CreateDoorman />
+        <Nav userName={userName} setUserName={setUserName} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <LoginPage {...props} setUserName={setUserName} />}
+          />
+        </Switch>
+        <div>
+          <CreateBuilding />
+          <CreateDoorman />
+        </div>
       </div>
     </Router>
   );

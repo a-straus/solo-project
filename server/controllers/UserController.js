@@ -13,7 +13,7 @@ userController.checkDuplicates = async (req, res, next) => {
     const result = await db.query(query);
     if (result.rows[0]) {
       console.log('User Already Exists');
-      return res.redirect('/');
+      return res.status(409).send();
     } else {
       next();
     }

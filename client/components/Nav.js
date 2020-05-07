@@ -9,6 +9,32 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 
-export default function Nav(props) {
-  return <Router></Router>;
+export default function Nav({ userName, setUserName }) {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          {Auth.isAuthenticated() ? (
+            <Link to="/:user_id">{userName}</Link>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+        </li>
+        {Auth.isAuthenticated() ? (
+          <li>
+            <button
+              onClick={() => {
+                Auth.logout(setUserName);
+              }}
+            >
+              Log Out
+            </button>
+          </li>
+        ) : null}
+      </ul>
+    </div>
+  );
 }
