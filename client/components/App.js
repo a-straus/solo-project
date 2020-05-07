@@ -40,7 +40,7 @@ export default function App() {
             </li>
           ) : null}
         </ul>
-      </div>{' '}
+      </div>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route

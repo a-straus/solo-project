@@ -19,8 +19,10 @@ export default function LoginPage(props) {
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter username</label>
         <input id="username" name="username" type="text" />
+        <br />
         <label htmlFor="password">Enter password</label>
         <input id="password" name="password" type="password" />
+        <br />
         <button>Login</button>
       </form>
     </div>
