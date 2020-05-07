@@ -5,6 +5,8 @@ import LoginPage from './LoginPage';
 import Nav from './Nav';
 import Auth from '../auth/Authorizer';
 import Cookies from 'js-cookie';
+import CreateBuilding from './CreateBuilding';
+import CreateDoorman from './CreateDoorman';
 
 export default function App() {
   const [userName, setUserName] = useState(
@@ -49,6 +51,10 @@ export default function App() {
           render={(props) => <LoginPage {...props} setUserName={setUserName} />}
         />
       </Switch>
+      <div>
+        <CreateBuilding />
+        <CreateDoorman />
+      </div>
     </Router>
   );
 }

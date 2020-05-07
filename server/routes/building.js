@@ -1,7 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models');
+const BuildingController = require('../controllers/BuildingController');
 
-router.post('/create', (req, res, next) => {});
+router.post(
+  '/create',
+  BuildingController.checkDuplicates,
+  BuildingController.createBuilding,
+  (req, res, next) => {
+    res.status(200).send();
+  }
+);
+router.get('/', BuildingController.getBuildings, (req, res, next) => {
+  res.status(200).json(res.locals.results);
+});
 
 module.exports = router;

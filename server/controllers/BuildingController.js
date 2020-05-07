@@ -27,11 +27,12 @@ buildingController.createBuilding = async (req, res, next) => {
   const { address, city, state, zip, borough, type } = req.body;
   try {
     const query = {
-      text: `INSERT INTO buildings(address, city, state, zip, borough, type)
+      text: `INSERT INTO buildings(address, city, state, postalcode, borough, type)
             VALUES($1, $2, $3, $4, $5, $6) returning *`,
-      values: [addres, city, state, zip, borough, type],
+      values: [address, city, state, zip, borough, type],
     };
-    const queryResult = await db.query(query, values);
+    const queryResult = await db.query(query);
+    next();
   } catch (err) {
     next({
       log: `Error in buildingController.createBuilding: ${err}`,
@@ -41,4 +42,22 @@ buildingController.createBuilding = async (req, res, next) => {
   }
 };
 
+buildingController.getBuildings = async (req, res, next) => {
+  const { address } = req.query;
+  const query = {
+    text: `SELECT * from buildings WHERE address like $1 LIMIT 5`,
+    values: ['%' + address + '%'],
+  };
+  try {
+    const queryResults = await db.query(query);
+    res.locals.results = queryResults.rows;
+    next();
+  } catch (err) {
+    next({
+      log: `Error in buildingController.getBuildings: ${err}`,
+      status: 500,
+      message: 'Failed to find buildings',
+    });
+  }
+};
 module.exports = buildingController;

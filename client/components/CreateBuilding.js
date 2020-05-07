@@ -9,9 +9,11 @@ export default function CreateBuilding() {
       body: data,
     });
     const resultData = await response.json();
+    event.target.reset();
   };
   return (
-    <div>
+    <span>
+      <h4>Create a Building:</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="address">Address:</label>
         <input id="address" name="address" type="text" />
@@ -25,18 +27,26 @@ export default function CreateBuilding() {
         <label htmlFor="zip">Zip:</label>
         <input id="zip" name="zip" type="text" />
         <br />
-        <select id="borough">
-          <option value="Manhattan">Manhattan</option>
+        <span>Borough: </span>
+        <select id="borough" name="borough">
+          <option value="Manhattan" selected="selected">
+            Manhattan
+          </option>
           <option value="Brooklyn">Brooklyn</option>
           <option value="Queens">Queens</option>
           <option value="Bronx">Bronx</option>
           <option value="Staten Island">Staten Island</option>
         </select>
-        <select id="type">
-          <option value="co-op">Co-Op</option>
+        <span> Type: </span>
+        <select id="type" name="type">
+          <option value="co-op" selected="selected">
+            Co-Op
+          </option>
           <option value="condo">Condo</option>
         </select>
+        <br />
+        <button>Submit</button>
       </form>
-    </div>
+    </span>
   );
 }
