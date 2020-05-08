@@ -13,4 +13,8 @@ router.post(
   }
 );
 
+router.get('/', (req, res, next) => {
+  res.status(200).json(res.locals.results);
+});
+
 module.exports = router;

@@ -6,6 +6,7 @@ router.post(
   '/create',
   BuildingController.checkDuplicates,
   BuildingController.createBuilding,
+  BuildingController.createUsers_buildings,
   (req, res, next) => {
     res.status(200).send();
   }

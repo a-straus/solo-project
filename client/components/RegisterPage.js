@@ -24,7 +24,7 @@ export default function RegisterPage({ setUserName, history, setUserId }) {
   if (redirect) return <Redirect to="/login" />;
 
   return (
-    <div>
+    <div className="user-login">
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter username</label>
         <input id="username" name="username" type="text" />

@@ -12,9 +12,13 @@ export default function Doorman({
   endurance,
   cunning,
   charisma,
+  canDelete,
 }) {
   return (
     <div className="doorman-view">
+      <p>
+        <strong>Doorman</strong>
+      </p>
       {superIntendent ? <h4>Super? YES</h4> : null}
       <p>First Name: {firstname}</p>
       <p>Last Name: {lastname}</p>
@@ -25,6 +29,7 @@ export default function Doorman({
       <p>Endurance: {endurance}</p>
       <p>Cunning: {cunning}</p>
       <p>Charisma: {charisma}</p>
+      {canDelete ? <button>Delete</button> : null}
     </div>
   );
 }

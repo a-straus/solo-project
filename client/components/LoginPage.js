@@ -32,7 +32,7 @@ export default function LoginPage({ setUserName, history, setUserId }) {
   );
   if (redirect) return <Redirect to="/register" />;
   return (
-    <div>
+    <div className="user-login">
       {incorrectPw ? <IncorrectPassword /> : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter username</label>
